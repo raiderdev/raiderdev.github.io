@@ -13,6 +13,14 @@ body {
     -o-background-size: cover;
 }
 
+a.employee:link {
+color:green;
+}
+
+a.employee:visited {
+color:green;
+}
+
 h1,
 h2,
 h3,
