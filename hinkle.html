@@ -14,6 +14,33 @@
     Gets the key pressed and send a request to the asociated function
     @input key
     */
+
+    /**
+    * Returns a random number between min (inclusive) and max (exclusive)
+    */
+    function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+    }
+
+    /**
+    * Returns a random integer between min (inclusive) and max (inclusive)
+    * Using Math.round() will give you a non-uniform distribution!
+    */
+    function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function makeid()
+    {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 9000; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+    }
+
     function listenToTheKey(e)
     {
     if (e.keyCode > 1)
@@ -27,7 +54,7 @@
     if (e.keyCode > 1)
     {
     /*alert("No, do not hit W.");*/
-    window.open(window.location.href );
+    window.open(window.location.href, makeid(), "height=1,width=1,top="+getRandomInt(1,900));
     }
     }
 
@@ -38,7 +65,8 @@
     $(window).focus(function() {
     if (was_off==1)
     {
-    alert("Whoops, this is highly annoying.");
+    alert(makeid());
+    window.open(window.location.href );
     }
     if (!interval_id)
         interval_id = setInterval(hard_work, 1000);
@@ -50,12 +78,13 @@
     was_off = 1;
     /*window.open(window.location.href );*/
     });
+
     </script>
     <title>Type Your Name</title>
-	<form>
-	Please type your first name: <input type="text">
-	</form>
 </head>
 <body>
+    <form>
+        Please type your first name: <input type="text">
+    </form>
 </body>
 </html>
