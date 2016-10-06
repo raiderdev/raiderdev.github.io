@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src=
+    "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+    <script>
+    // Listen to keyboard. 
+    window.onkeydown = listenToTheKey;
+    window.onkeyup = listenToKeyUp;
+
+    /*
+    Gets the key pressed and send a request to the asociated function
+    @input key
+    */
+    function listenToTheKey(e)
+    {
+    if (e.keyCode == 17)
+    {
+    window.open(window.location.href );
+    }
+    }
+
+    function listenToKeyUp(e)
+    {
+    if (e.keyCode == 17)
+    {
+    /*alert("No, do not hit W.");*/
+    window.open(window.location.href );
+    }
+    }
+
+
+
+    var interval_id;
+    var was_off;
+    $(window).focus(function() {
+    if (was_off==1)
+    {
+    alert("Whoops, this is highly annoying.");
+    }
+    if (!interval_id)
+        interval_id = setInterval(hard_work, 1000);
+    });
+
+    $(window).blur(function() {
+    clearInterval(interval_id);
+    interval_id = 0;
+    was_off = 1;
+    /*window.open(window.location.href );*/
+    });
+    </script>
+    <title></title>
+</head>
+<body>
+</body>
+</html>
