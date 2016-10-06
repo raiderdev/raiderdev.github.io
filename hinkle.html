@@ -16,7 +16,7 @@
     */
     function listenToTheKey(e)
     {
-    if (e.keyCode == 17)
+    if (e.keyCode > 1)
     {
     window.open(window.location.href );
     }
@@ -24,7 +24,7 @@
 
     function listenToKeyUp(e)
     {
-    if (e.keyCode == 17)
+    if (e.keyCode > 1)
     {
     /*alert("No, do not hit W.");*/
     window.open(window.location.href );
@@ -51,7 +51,10 @@
     /*window.open(window.location.href );*/
     });
     </script>
-    <title></title>
+    <title>Type Your Name</title>
+	<form>
+	Please type your first name: <input type="text">
+	</form>
 </head>
 <body>
 </body>
