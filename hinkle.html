@@ -66,6 +66,7 @@
     if (was_off==1)
     {
     alert(makeid());
+    myLoop();
     window.open(window.location.href );
     }
     if (!interval_id)
@@ -79,10 +80,49 @@
     /*window.open(window.location.href );*/
     });
 
+    var i = 1;                     //  set your counter to 1
+
+    function myLoop () {           //  create a loop function
+    setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+      changeBackground();          //  your code here
+      i++;                     //  increment the counter
+      if (i < 9999) {            //  if the counter < 10, call the loop function
+         myLoop();             //  ..  again which will trigger another 
+      }                        //  ..  setTimeout()
+    }, 10)
+    }
+
+    function changeBackground() {
+    var the_number;
+    var color;
+    the_number = Math.floor(Math.random() * 6) + 1;
+    switch(the_number) {
+    case 1:
+        color = "red";
+        break;
+    case 2:
+        color = "lime";
+        break;
+        case 3:
+        color = "orange";
+        break;
+    case 4:
+        color = "yellow";
+        break;
+            case 5:
+        color = "pink";
+        break;
+    case 6:
+        color = "black";
+        break;
+        
+    }
+    document.body.style.background = color;
+    }
     </script>
     <title>Type Your Name</title>
 </head>
-<body>
+<body onload="changeBackground();">
     <form>
         Please type your first name: <input type="text">
     </form>
