@@ -5,11 +5,6 @@
 Name trick is a very annoying JavaScript project by Austin Bollinger.
 -->
 
-<style>
-html{
-cursor: none;
-}
-</style>
     <script src=
     "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
     </script>
@@ -121,18 +116,22 @@ cursor: none;
         color = "pink";
         break;
     case 6:
-        color = "black";
+        color = "cyan";
         break;
         
     }
     document.body.style.background = color;
     }
+	
+	window.onload = function() {
+  document.getElementById("Box1").focus();
+};
     </script>
     <title>Type Your Name</title>
 </head>
 <body onload="changeBackground();">
     <form>
-        Please type your first name: <input type="text">
+        Please type your first name: <input id="Box1" type="text">
     </form>
 </body>
 </html>
