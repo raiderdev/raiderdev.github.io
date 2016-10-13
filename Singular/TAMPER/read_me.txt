@@ -27,3 +27,8 @@ mail.grcc.edu (GroupWise)
 csprod
 itsupport (eHelpDesk)
 Cisco Finesse
+Would be nice to also add support for Google Hangouts.
+Setup Google Hangouts somewhat similar to Facebook messenger.
+
+I will be working through Brian's script to use as an example. He has already done
+a lot of great work.
