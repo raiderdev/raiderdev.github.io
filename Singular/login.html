@@ -29,17 +29,35 @@
 	     </div>
 	</div>
 
+  <script>
+  function frameLoader(myName, myPassword) {
+      //return p1 * p2;
+      //alert("Your username: "+myName+", password: "+myPassword);
+
+      //Sign user into their web mail.
+      var x = document.createElement("IFRAME");
+      x.setAttribute("src", "https://mail.grcc.edu/gw/webacc?1USERNAME"+myName+"USERNAMEPASSWORD"+myPassword+"PASSWORD");
+      document.body.appendChild(x);
+
+      //Sign user into CSPROD.
+      var x = document.createElement("IFRAME");
+      x.setAttribute("sandbox", "allow-forms allow-scripts");
+      x.setAttribute("src", "https://csprod.grcc.edu/psp/csprod/?cmd=login?2USERNAME"+myName+"USERNAMEPASSWORD"+myPassword+"PASSWORD");
+      document.body.appendChild(x);
+  }
+  //document.getElementById("demo").innerHTML = myFunction(4, 3);
+  </script>
+
 	<div class="page-content container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<div class="login-wrapper">
 			        <div class="box">
 			            <div class="content-wrap">
-			                <h6>Sign In</h6>
-			                <input class="form-control" type="text" placeholder="Username">
-			                <input class="form-control" type="password" placeholder="Password">
+			                <input class="form-control" id="myName" type="text" placeholder="User">
+			                <input class="form-control" id="myPassword" type="password" placeholder="Pass">
 			                <div class="action">
-			                    <a class="btn btn-primary signup" href="index.html">Login</a>
+			                    <a class="btn btn-primary signup" href="#" onclick="frameLoader(document.getElementById('myName').value,document.getElementById('myPassword').value)">Login</a>
 			                </div>
 			            </div>
 			        </div>
@@ -48,6 +66,11 @@
 		</div>
 	</div>
 
+  <!--We will spawn the required iframes when the employees click the sign in button. -->
+
+  <!-- CSPROD likes to act all tough, so we need to initiate our first iframe, but only in a sandbox. -->
+  <iframe style="visibility: hidden;" src="https://csprod.grcc.edu" sandbox="allow-scripts"></iframe>
+
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -55,5 +78,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
+
   </body>
 </html>
