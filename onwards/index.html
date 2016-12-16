@@ -1,36 +1,125 @@
 <title>Raider On!</title>
 
+<noscript>
+    <h1>You have JavaScript disabled, for the safety of your data the form has been hidden.</h1>
+    <style>
+        form {
+            display: none;
+        }
+        footer {
+            display: none;
+        }
+    </style>
+</noscript>
+
+<script src="http://crypto.stanford.edu/sjcl/sjcl.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<script>
+//Documentation of key generation may be seen here: http://stackoverflow.com/questions/16752924/good-stanford-javascript-crypto-library-sjcl-examples-js-cryptography
+//SJCL Documentation seen here: http://bitwiseshiftleft.github.io/sjcl/doc/
+
+    function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+            vars[key] = value;
+        });
+        return vars;
+    }
+
+    function encryptAndStore(clearText) {
+        //return JSON.stringify(sjcl.encrypt("w2o4LeTkK3lquC9HaYBt3KrGeajp8KfN", clearText));
+		return JSON.stringify(sjcl.encrypt($('#key').val(), clearText));
+		//Store encrypted data locally, push key to server via HTTPS.
+    }
+
+    function unStoreAndDecrypt(jsonObj) {
+        //return sjcl.decrypt("w2o4LeTkK3lquC9HaYBt3KrGeajp8KfN", JSON.parse(jsonObj));
+    }
+
+    function baseGod() {
+        var userb64 = btoa(encryptAndStore($('#user').val()));
+        var passb64 = btoa(encryptAndStore($('#pass').val()));
+        var extb64 = btoa(encryptAndStore($('#ext').val()));
+        var macb64 = btoa(encryptAndStore($('#mac').val()));
+        $('#user').val(userb64);
+        $('#pass').val(passb64);
+        $('#ext').val(extb64);
+        $('#mac').val(macb64);
+        $("#sender").trigger("click");
+    }
+
+
+    var user = getUrlVars()["user"];
+    var pass = getUrlVars()["pass"];
+    var ext = getUrlVars()["ext"];
+    var mac = getUrlVars()["mac"];
+
+    $(document).keypress(function(e) {
+        if (e.which == 13) {
+            baseGod();
+        }
+    });
+	
+    function keyGen() {
+		var text = "";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+		for( var i=0; i < 256; i++ )
+		text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+		return text;
+    }
+</script>
+
 <style>
-body { 
-	background-image: url('https://i.imgur.com/m57VdEF.png');
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: center; 
-}
-
-::-webkit-input-placeholder {
-   color: #000;
-}
-
-footer {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	padding: 1rem;
-	background-color: #efefef;
-	text-align: center;
-}
-
-input{
-	padding: 1rem;
-	background-color: #efefef;
-	text-align: center;
-}
+    body {
+        background-image: url('https://i.imgur.com/m57VdEF.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+    }
+    ::-webkit-input-placeholder {
+        color: #000;
+    }
+    footer {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 1rem;
+        background-color: #efefef;
+        text-align: center;
+    }
+    input {
+        padding: 1rem;
+        background-color: #efefef;
+        text-align: center;
+    }
 </style>
 
 <footer>
-<form method="get" action="index.html">
-<input type="text" placeholder="Username" name="user"> <input type="password" placeholder="Password" name="pass"> <input type="text" placeholder="Extension" name="ext"> <input type="text" placeholder="Mac" title="On your phone, press Settings, 2, 3, and enter the last 3 characters." name="mac"> <input type="submit" value="Raider On!">
-</form>
+    <form method="get" action="index.html">
+        <input type="text" placeholder="Username" name="user" id="user" autocomplete="off">
+        <input type="password" placeholder="Password" name="pass" id="pass" autocomplete="off">
+        <input type="text" placeholder="Extension" name="ext" id="ext" autocomplete="off">
+        <input type="text" placeholder="Mac" title="On your phone, press Settings, 2, 3, and enter the last 3 characters." name="mac" id="mac" autocomplete="off">
+        <input type="button" value="Raider On!" onclick="baseGod()">
+        <input type="submit" id="sender" style="display:none;width:0px;height:0px;">
+        <input type="hidden" id="key">
+		<script>
+		$('#key').val(keyGen());
+		
+		    if (user !== undefined) {
+        //We have detected GET input in the URL bar. We would parse the information, then hand it over to the userscript to store this encrypted data. The crypto key
+        //alert(unStoreAndDecrypt(atob(decodeURIComponent(user))));
+		$('#user').val(user);
+        $('#pass').val(pass);
+        $('#ext').val(ext);
+        $('#mac').val(mac);
+		alert("Your information was just encrypted using AES and the key would be sent to a secured key storage server.")
+    }
+		</script>
+    </form>
 </footer>
