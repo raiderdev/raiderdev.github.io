@@ -1,0 +1,30 @@
+#grcc header {
+	margin-bottom: 50px;
+}
+#grcc header div.container-fluid {
+	background: url('https://www.grcc.edu/sites/all/themes/grcc_omega/images/header_background.png') no-repeat top right #059;
+	border-top: 2px solid #036;
+	border-bottom: 1px solid #036;
+	box-shadow: 0px -5px 20px 2px #036;
+}
+#grcc header h1{
+	background: url('https://www.grcc.edu/sites/all/themes/grcc_omega/images/grcc_logo.png') no-repeat transparent;
+	text-indent: -9999px;
+	display: block;
+	width: 260px;
+	height: 100px;
+	margin: 5px auto;
+}
+#grcc header h1 a{
+	display: block;
+	width: 260px;
+	height: 100px;
+}
+. forgot_Hidden{
+	display:none;
+}
+#forgot{
+	color:grey;
+	text-decoration:underline;
+	cursor: pointer;
+}

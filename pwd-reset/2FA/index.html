@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>GRCC Password Reset</title>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="assets/css/grcc_theme.css">
+<script type='text/javascript' src='https://code.jquery.com/jquery-1.11.0.js'></script>
+<script type='text/javascript' src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+<script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.23/jquery.form-validator.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<script type='text/javascript'>
+//<![CDATA[ 
+$(window).load(function(){
+
+	var config = {
+		validate :{
+			'password_confirmation' : {
+				'validation' : 'length differentInput required custom',
+				'length' : 'min10',
+				'regexp' : '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$',
+				'error-msg-custom' : 'Your password must include at least one uppercase letter, lowercase letter and number', 
+				'error-msg-length' : 'Your password must be a minmum of 10 characters',
+				'help' : 'Your pasword must be a minimum of 10 characters and include at least one uppercase letter, lowercase letter and number'
+			}
+		}
+	};
+
+	$.validate({
+		
+		
+		modules: 'jsconf, date, security, sanitize',
+		validateOnBlur : false, // disable validation when input loses focus
+		errorMessagePosition : 'top', // Instead of 'inline' which is default
+		scrollToTopOnError : false, // Set this property to true on longer forms
+		
+		onModulesLoaded : function () {
+			$.setupValidation(config);
+		}
+
+	});
+	$("#birthdate").datepicker({
+		dateFormat: "mm/dd/yy",
+		yearRange: "-100:+0",
+		changeMonth: true,
+		changeYear: true
+	});
+	
+	
+});
+
+
+//]]>
+</script>
+</head>
+
+<body id="grcc">
+<header>
+  <div class="container-fluid">
+      <h1><a href="http://www.grcc.edu">Grand Rapids Community College</a></h1>
+  </div>
+</header><div class="container">
+    <div class="row">
+    <div class="col-xs-9 col-xs-offset-2 col-md-7 col-md-offset-3 col-lg-6 col-lg-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Password Reset System</h3>
+        </div>
+		
+        <div class="panel-body">
+		<div id="email-error-dialog"></div>
+     <form action="verify.html" method="post">
+	User ID Number: <input type="text" maxlength="7" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+<input type="submit" value="Next">
+
+<p>
+<img alt="recaptcha" src="images/hero-recaptcha-demo.gif">
+<br />
+The above is an example of NoCAPTCHA.
+<br />
+With Invisible reCAPTCHA, Google allows us to verify users are humans when they click the above Next button.
+<br />
+This is useful for account security and blocking malicious bots.
+</p>
+</form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+<script type='text/javascript' src="assets/js/scripts.js"></script>
+</html>

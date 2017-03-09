@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>GRCC Password Reset</title>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="assets/css/grcc_theme.css">
+<script type='text/javascript' src='https://code.jquery.com/jquery-1.11.0.js'></script>
+<script type='text/javascript' src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+<script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.23/jquery.form-validator.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<script type='text/javascript'>
+//<![CDATA[ 
+$(window).load(function(){
+
+	var config = {
+		validate :{
+			'password_confirmation' : {
+				'validation' : 'length differentInput required custom',
+				'length' : 'min10',
+				'regexp' : '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$',
+				'error-msg-custom' : 'Your password must include at least one uppercase letter, lowercase letter and number', 
+				'error-msg-length' : 'Your password must be a minmum of 10 characters',
+				'help' : 'Your pasword must be a minimum of 10 characters and include at least one uppercase letter, lowercase letter and number'
+			}
+		}
+	};
+
+	$.validate({
+		
+		
+		modules: 'jsconf, date, security, sanitize',
+		validateOnBlur : false, // disable validation when input loses focus
+		errorMessagePosition : 'top', // Instead of 'inline' which is default
+		scrollToTopOnError : false, // Set this property to true on longer forms
+		
+		onModulesLoaded : function () {
+			$.setupValidation(config);
+		}
+
+	});
+	$("#birthdate").datepicker({
+		dateFormat: "mm/dd/yy",
+		yearRange: "-100:+0",
+		changeMonth: true,
+		changeYear: true
+	});
+	
+	
+});
+
+
+//]]>
+</script>
+</head>
+
+<body id="grcc">
+<header>
+  <div class="container-fluid">
+      <h1><a href="http://www.grcc.edu">Grand Rapids Community College</a></h1>
+  </div>
+</header><div class="container">
+    <div class="row">
+    <div class="col-xs-9 col-xs-offset-2 col-md-7 col-md-offset-3 col-lg-6 col-lg-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Password Reset System</h3>
+        </div>
+		
+        <div class="panel-body">
+		<div id="email-error-dialog"></div>
+     <form action="set.html" method="post">
+<i>Your account has security questions setup.</i>
+<br /><br />
+Favorite car brand: <select>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+  <option value="audi">ETC</option>
+</select>
+<br /><br />
+	Favorite color: <select>
+  <option value="red">Red</option>
+  <option value="yellow">Yellow</option>
+  <option value="purple">Purple</option>
+  <option value="black">Black</option>
+  <option value="audi">ETC</option>
+</select>
+<br /><br />
+	Favorite animal: <select>
+  <option value="monkey">Monkey</option>
+  <option value="trout">Trout</option>
+  <option value="lion">Lion</option>
+  <option value="wolf">Wolf</option>
+  <option value="audi">ETC</option>
+</select>
+<br /><hr><br />
+	First Name: <input type="text" maxlength="50">
+<br /><br />
+Last Name: <input type="text" maxlength="50">
+<br /><br />
+Last 4 digits of SSN: <input type="password" maxlength="50">
+<br /><br />
+If the user has no last 4 of SSN on file we will display a field requesting their mailing address on file: <input type="text" maxlength="50">
+<br /><br />
+<label for=date1_day >Birth Date:</label>
+
+<SELECT name="month">
+<OPTION value="">
+<OPTION value="01">Jan
+<OPTION value="02">Feb
+<OPTION value="03">Mar
+<OPTION value="04">Apr
+<OPTION value="05">May
+<OPTION value="06">Jun
+<OPTION value="07">Jul
+<OPTION value="08">Aug
+<OPTION value="09">Sep
+<OPTION value="10">Oct
+<OPTION value="11">Nov
+<OPTION value="12">Dec
+</select>
+
+
+<SELECT name="day">
+<OPTION value="">
+<OPTION value="01">01
+<OPTION value="02">02
+<OPTION value="03">03
+<OPTION value="04">04
+<OPTION value="05">05
+<OPTION value="06">06
+<OPTION value="07">07
+<OPTION value="08">08
+<OPTION value="09">09
+<OPTION value="10">10
+<OPTION value="11">11
+<OPTION value="12">12
+<OPTION value="13">13
+<OPTION value="14">14
+<OPTION value="15">15
+<OPTION value="16">16
+<OPTION value="17">17
+<OPTION value="18">18
+<OPTION value="19">19
+<OPTION value="20">20
+<OPTION value="21">21
+<OPTION value="22">22
+<OPTION value="23">23
+<OPTION value="24">24
+<OPTION value="25">25
+<OPTION value="26">26
+<OPTION value="27">27
+<OPTION value="28">28
+<OPTION value="29">29
+<OPTION value="30">30
+<OPTION value="31">31
+</select>
+
+<SELECT name="year">
+<OPTION value="">
+<OPTION value="2006">2006
+<OPTION value="2005">2005
+<OPTION value="2004">2004
+<OPTION value="2003">2003
+<OPTION value="2002">2002
+<OPTION value="2001">2001
+<OPTION value="2000">2000
+<OPTION value="1999">1999
+<OPTION value="1998">1998
+<OPTION value="1997">1997
+<OPTION value="1996">1996
+<OPTION value="1995">1995
+<OPTION value="1994">1994
+<OPTION value="1993">1993
+<OPTION value="1992">1992
+<OPTION value="1991">1991
+<OPTION value="1990">1990
+<OPTION value="1989">1989
+<OPTION value="1988">1988
+<OPTION value="1987">1987
+<OPTION value="1986">1986
+<OPTION value="1985">1985
+<OPTION value="1984">1984
+<OPTION value="1983">1983
+<OPTION value="1982">1982
+<OPTION value="1981">1981
+<OPTION value="1980">1980
+<OPTION value="1979">1979
+<OPTION value="1978">1978
+<OPTION value="1977">1977
+<OPTION value="1976">1976
+<OPTION value="1975">1975
+<OPTION value="1974">1974
+<OPTION value="1973">1973
+<OPTION value="1972">1972
+<OPTION value="1971">1971
+<OPTION value="1970">1970
+<OPTION value="1969">1969
+<OPTION value="1968">1968
+<OPTION value="1967">1967
+<OPTION value="1966">1966
+<OPTION value="1965">1965
+<OPTION value="1964">1964
+<OPTION value="1963">1963
+<OPTION value="1962">1962
+<OPTION value="1961">1961
+<OPTION value="1960">1960
+<OPTION value="1959">1959
+<OPTION value="1958">1958
+<OPTION value="1957">1957
+<OPTION value="1956">1956
+<OPTION value="1955">1955
+<OPTION value="1954">1954
+<OPTION value="1953">1953
+<OPTION value="1952">1952
+<OPTION value="1951">1951
+<OPTION value="1950">1950
+<OPTION value="1949">1949
+<OPTION value="1948">1948
+<OPTION value="1947">1947
+<OPTION value="1946">1946
+<OPTION value="1945">1945
+<OPTION value="1944">1944
+<OPTION value="1943">1943
+<OPTION value="1942">1942
+<OPTION value="1941">1941
+<OPTION value="1940">1940
+<OPTION value="1939">1939
+<OPTION value="1938">1938
+<OPTION value="1937">1937
+<OPTION value="1936">1936
+<OPTION value="1935">1935
+<OPTION value="1934">1934
+<OPTION value="1933">1933
+<OPTION value="1932">1932
+<OPTION value="1931">1931
+<OPTION value="1930">1930
+<OPTION value="1929">1929
+<OPTION value="1925">1925
+</select>
+<br /><br />
+<input type="submit" value="Next">
+</form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+<script type='text/javascript' src="assets/js/scripts.js"></script>
+</html>
